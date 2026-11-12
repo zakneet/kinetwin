@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/sora';
+@import '@fontsource-variable/ibm-plex-sans';
+
+@theme {
+  --font-display: 'Sora Variable', 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans Variable', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --color-abyss: #050913;
+  --color-deep: #0a1222;
+  --color-navy: #0e1830;
+  --color-ink: #e6eef8;
+  --color-muted: #8b98b0;
+  --color-faint: #5a6680;
+  --color-line: rgb(148 178 220 / 0.12);
+  --color-line-strong: rgb(148 178 220 / 0.22);
+  --color-turq: #3ee6d2;
+  --color-azure: #58a6ff;
+  --color-violet: #8f7cff;
+  --color-amber: #f2b661;
+  --color-coral: #ff7a8a;
+}
+
+:root {
+  color-scheme: dark;
+  --glass: rgb(13 21 38 / 0.72);
+  --glass-strong: rgb(10 17 32 / 0.88);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 700px at 58% 38%, rgb(30 60 110 / 0.35), transparent 70%),
+    radial-gradient(900px 600px at 85% 90%, rgb(110 80 220 / 0.12), transparent 70%),
+    linear-gradient(180deg, #070c18 0%, #050913 100%);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--color-line);
+}
+
+.glass-strong {
+  background: var(--glass-strong);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid var(--color-line-strong);
+}
+
+/* The 3D stage: no card, the canvas bleeds into the page. */
+.stage {
+  background:
+    radial-gradient(60% 55% at 50% 46%, rgb(36 72 128 / 0.42), transparent 75%),
+    radial-gradient(40% 30% at 50% 88%, rgb(62 230 210 / 0.06), transparent 80%);
+}
+
+.stage-grid {
+  background-image:
+    linear-gradient(rgb(148 178 220 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 178 220 / 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(65% 60% at 50% 50%, black, transparent 85%);
+}
+
+.joint-label {
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: #f4fbff;
+  background: rgb(8 14 28 / 0.86);
+  border: 1px solid rgb(62 230 210 / 0.45);
+  border-radius: 6px;
+  padding: 3px 8px;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.35);
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(148 178 220 / 0.25) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-turq);
+  outline-offset: 2px;
+}
+
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+
+input[type='range'] {
+  accent-color: var(--color-turq);
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+@keyframes count-in {
+  from {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.count-in {
+  animation: count-in 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.rise {
+  animation: rise 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
